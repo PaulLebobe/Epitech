@@ -1,0 +1,9 @@
+FROM python:3.10-slim-buster
+
+RUN apk add --no-cache bash
+SHELL ["/bin/bash", "-c"]
+ONBUILD COPY . /app
+ONBUILD WORKDIR /app
+ONBUILD RUN pip install -r requirements.txt
+
+ONBUILD CMD ["python", "-m", "app"]
